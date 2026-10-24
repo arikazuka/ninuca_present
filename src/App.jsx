@@ -632,6 +632,114 @@ export default function App() {
   }, [currentPage]);
 
   const litCount = candles.filter(Boolean).length;
+  useEffect(() => {
+    if (currentPage !== 8 || isScratched) return;
+
+    const canvas = scratchCanvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    // Set canvas scale for HiDPI crispness
+    const rect = canvas.getBoundingClientRect();
+    canvas.width = rect.width * 2;
+    canvas.height = rect.height * 2;
+    ctx.scale(2, 2);
+
+    // 1. Draw Gold Metallic Scratch Foil
+    const grad = ctx.createLinearGradient(0, 0, rect.width, rect.height);
+    grad.addColorStop(0, '#f59e0b');
+    grad.addColorStop(0.25, '#fef08a');
+    grad.addColorStop(0.5, '#d97706');
+    grad.addColorStop(0.75, '#fef08a');
+    grad.addColorStop(1, '#b45309');
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, rect.width, rect.height);
+
+    // 2. Add subtle texture overlay text
+    ctx.font = 'bold 15px sans-serif';
+    ctx.fillStyle = 'rgba(120, 53, 15, 0.5)';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('✨ SCRATCH HERE WITH FINGER OR MOUSE ✨', rect.width / 2, rect.height / 2);
+
+    let isDrawing = false;
+
+    const checkScratchPercentage = () => {
+      const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      const pixels = imageData.data;
+      let transparent = 0;
+
+      for (let i = 3; i < pixels.length; i += 16) {
+        if (pixels[i] === 0) transparent++;
+      }
+
+      const percent = (transparent / (pixels.length / 16)) * 100;
+      if (percent > 45) {
+        setIsScratched(true);
+        triggerFireworks();
+      }
+    };
+
+    const getPos = (e) => {
+      const cRect = canvas.getBoundingClientRect();
+      const isTouch = typeof window !== 'undefined' && 'TouchEvent' in window && e instanceof TouchEvent;
+
+      const clientX = isTouch
+        ? e.touches?.[0]?.clientX || 0
+        : e.clientX;
+
+      const clientY = isTouch
+        ? e.touches?.[0]?.clientY || 0
+        : e.clientY;
+
+      return {
+        x: clientX - cRect.left,
+        y: clientY - cRect.top
+      };
+    };
+
+    const scratch = (e) => {
+      if (!isDrawing) return;
+      const pos = getPos(e);
+
+      ctx.globalCompositeOperation = 'destination-out';
+      ctx.beginPath();
+      ctx.arc(pos.x, pos.y, 28, 0, Math.PI * 2);
+      ctx.fill();
+
+      checkScratchPercentage();
+    };
+
+    const startDrawing = (e) => {
+      isDrawing = true;
+      scratch(e);
+    };
+
+    const stopDrawing = () => {
+      isDrawing = false;
+    };
+
+    // Attach listeners using native Event types
+    canvas.addEventListener('mousedown', startDrawing);
+    canvas.addEventListener('mousemove', scratch);
+    window.addEventListener('mouseup', stopDrawing);
+
+    canvas.addEventListener('touchstart', startDrawing, { passive: true });
+    canvas.addEventListener('touchmove', scratch, { passive: true });
+    window.addEventListener('touchend', stopDrawing);
+
+    return () => {
+      canvas.removeEventListener('mousedown', startDrawing);
+      canvas.removeEventListener('mousemove', scratch);
+      window.removeEventListener('mouseup', stopDrawing);
+
+      canvas.removeEventListener('touchstart', startDrawing);
+      canvas.removeEventListener('touchmove', scratch);
+      window.removeEventListener('touchend', stopDrawing);
+    };
+  }, [currentPage, isScratched]);
 
   return (
 
@@ -1017,29 +1125,71 @@ export default function App() {
 
         {/* PAGE 8: SCRATCH CARD */}
         {currentPage === 8 && (
-          <div className="w-full max-w-2xl text-center space-y-8 mx-auto">
-            <div className="space-y-2">
-              <h2 className="text-4xl font-serif-header text-amber-300 font-bold">The Grand Prize Reveal</h2>
-              <p className="text-sm text-slate-300">Scratch the ticket below to unveil your present!</p>
-            </div>
-            <div className="relative max-w-md mx-auto rounded-3xl overflow-hidden border-2 border-amber-400/40 shadow-2xl bg-slate-900 p-8 space-y-5">
-              <div className="space-y-4">
-                <div className="w-28 h-28 mx-auto rounded-2xl bg-gradient-to-tr from-amber-400 to-amber-600 flex items-center justify-center text-6xl shadow-xl">
-                  📷
-                </div>
-                <h3 className="text-2xl font-bold text-amber-300">Your Birthday Gift: A Bespoke Camera</h3>
-                <p className="text-sm text-slate-300 leading-relaxed">
-                  To the girl who notices every tiny detail that others miss—now you can capture every single moment of your world exactly how you see it.
-                </p>
+          <div className="w-full max-w-2xl text-center space-y-8 mx-auto px-4 animate-fade-in">
+            {/* Page Header */}
+            <div className="space-y-3">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-semibold tracking-widest uppercase backdrop-blur-md animate-pulse">
+                ✨ Exclusive Reveal
               </div>
+              <h2 className="text-4xl sm:text-5xl font-serif text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-amber-200 font-bold tracking-tight">
+                The Grand Prize Reveal
+              </h2>
+              <p className="text-sm sm:text-base text-slate-300 font-light">
+                Scratch the golden card below to unveil your birthday present!
+              </p>
+            </div>
+
+            {/* Scratch Ticket Container */}
+            <div className="relative max-w-md mx-auto rounded-3xl overflow-hidden border-2 border-amber-400/50 shadow-[0_0_50px_rgba(245,158,11,0.2)] bg-gradient-to-b from-slate-900 via-slate-950 to-slate-900 p-8 space-y-6 transition-all duration-500 hover:border-amber-400/80">
+
+              {/* Background Ambient Glow */}
+              <div className="absolute -top-20 -left-20 w-40 h-40 bg-amber-500/20 rounded-full blur-3xl pointer-events-none" />
+              <div className="absolute -bottom-20 -right-20 w-40 h-40 bg-amber-400/10 rounded-full blur-3xl pointer-events-none" />
+
+              {/* Hidden Present Content (Revealed after scratch) */}
+              <div className={`space-y-5 transition-all duration-700 ease-out ${isScratched ? 'scale-100 opacity-100' : 'scale-95 opacity-90'}`}>
+
+                {/* Watch Icon Container with Shimmer Ring */}
+                <div className="relative w-32 h-32 mx-auto">
+                  <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-amber-400 via-yellow-200 to-amber-600 animate-spin-slow opacity-75 blur-sm" />
+                  <div className="relative w-full h-full rounded-2xl bg-gradient-to-tr from-amber-500 via-amber-400 to-amber-600 flex items-center justify-center text-6xl shadow-[0_10px_25px_rgba(245,158,11,0.4)] border border-amber-200/40 transform transition-transform hover:rotate-6">
+                    ⌚
+                  </div>
+                </div>
+
+                {/* Present Title & Message */}
+                <div className="space-y-2">
+                  <h3 className="text-2xl sm:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-300 to-amber-400">
+                    Your Birthday Gift: An Elegant Watch
+                  </h3>
+                  <p className="text-sm text-slate-300 leading-relaxed font-light px-2">
+                    To the girl who turns every simple moment into a masterpiece—may every single second with this timepiece remind you of how deeply precious, appreciated, and cherished you are.
+                  </p>
+                </div>
+              </div>
+
+              {/* Interactive Scratch Canvas Overlay */}
               {!isScratched && (
-                <canvas ref={scratchCanvasRef} width={380} height={260} className="absolute inset-0 w-full h-full cursor-pointer touch-none rounded-3xl" />
+                <div className="absolute inset-0 w-full h-full z-10">
+                  <canvas
+                    ref={scratchCanvasRef}
+                    className="w-full h-full cursor-pointer touch-none rounded-3xl"
+                  />
+                </div>
               )}
             </div>
+
+            {/* Next Chapter Button (Appears after scratch) */}
             {isScratched && (
-              <button onClick={() => setCurrentPage(9)} className="px-10 py-4 rounded-2xl bg-gradient-to-r from-amber-400 to-amber-600 text-slate-950 font-bold text-lg shadow-xl hover:scale-105 active:scale-95 transition-all">
-                Final Chapter →
-              </button>
+              <div className="pt-4 animate-bounce-short">
+                <button
+                  onClick={() => setCurrentPage(9)}
+                  className="group relative inline-flex items-center gap-3 px-10 py-4 rounded-2xl bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 text-slate-950 font-bold text-lg shadow-[0_0_30px_rgba(245,158,11,0.4)] hover:scale-105 active:scale-95 transition-all duration-300"
+                >
+                  <span>Final Chapter</span>
+                  <span className="transform group-hover:translate-x-1 transition-transform">→</span>
+                </button>
+              </div>
             )}
           </div>
         )}
