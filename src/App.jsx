@@ -38,7 +38,7 @@ const playWhooshSound = () => {
 
 // --- Cute Bear SVGs ---
 const BearPumpingHeart = () => (
-  <div className="relative w-44 h-44 sm:w-52 sm:h-52 mx-auto flex items-center justify-center cursor-pointer group">
+  <div className="relative w-32 h-32 sm:w-52 sm:h-52 mx-auto flex items-center justify-center cursor-pointer group">
     {/* Subtle glow effect behind the bear */}
     <div className="absolute inset-0 bg-rose-500/20 rounded-full blur-2xl group-hover:bg-rose-500/30 transition-all duration-300" />
 
@@ -161,10 +161,10 @@ const BearPresentBox = () => {
   return (
     <div
       onClick={triggerRebounce}
-      className="relative w-64 h-64 sm:w-72 sm:h-72 mx-auto cursor-pointer select-none group flex items-center justify-center"
+      className="relative w-52 h-52 sm:w-72 sm:h-72 mx-auto cursor-pointer select-none group flex items-center justify-center touch-manipulation"
     >
       {/* Dynamic Floor Shadow beneath Box */}
-      <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-48 h-8 bg-black/40 rounded-[100%] blur-md transition-all group-hover:w-52 group-hover:bg-black/50" />
+      <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-40 sm:w-48 h-8 bg-black/40 rounded-[100%] blur-md transition-all group-hover:w-52 group-hover:bg-black/50" />
 
       {/* Confetti Explosion System */}
       <StudioConfettiSystem />
@@ -173,7 +173,7 @@ const BearPresentBox = () => {
       <img
         src="/image/Celebrate Happy Birthday GIF by Sappy Seals.gif"
         alt="Cute Birthday Bears"
-        className={`w-56 h-56 sm:w-64 sm:h-64 object-contain drop-shadow-2xl relative z-10 transition-transform duration-300 transform-gpu ${isInteractiveBouncing ? 'scale-110 -translate-y-3' : 'group-hover:scale-105'
+        className={`w-44 h-44 sm:w-64 sm:h-64 object-contain drop-shadow-2xl relative z-10 transition-transform duration-300 transform-gpu ${isInteractiveBouncing ? 'scale-110 -translate-y-3' : 'group-hover:scale-105'
           }`}
       />
     </div>
@@ -181,7 +181,7 @@ const BearPresentBox = () => {
 };
 
 const BearSparkle = () => (
-  <svg viewBox="0 0 160 160" className="w-44 h-44 sm:w-52 sm:h-52 mx-auto drop-shadow-lg">
+  <svg viewBox="0 0 160 160" className="w-32 h-32 sm:w-52 sm:h-52 mx-auto drop-shadow-lg">
     <circle cx="45" cy="40" r="14" fill="#FAF5EF" stroke="#332211" strokeWidth="3" />
     <circle cx="115" cy="40" r="14" fill="#FAF5EF" stroke="#332211" strokeWidth="3" />
     <circle cx="80" cy="75" r="45" fill="#FAF5EF" stroke="#332211" strokeWidth="3" />
@@ -201,7 +201,7 @@ const BearSparkle = () => (
 );
 
 const BearHugging = () => (
-  <div className="relative w-40 h-40 sm:w-48 sm:h-48 mx-auto flex items-center justify-center cursor-pointer group my-2">
+  <div className="relative w-28 h-28 sm:w-48 sm:h-48 mx-auto flex items-center justify-center cursor-pointer group my-2">
     {/* Subtle pink background glow */}
     <div className="absolute inset-0 bg-pink-500/20 rounded-full blur-2xl group-hover:bg-pink-500/30 transition-all duration-300" />
 
@@ -215,7 +215,7 @@ const BearHugging = () => (
 );
 
 const BearLove = () => (
-  <div className="relative w-40 h-40 sm:w-48 sm:h-48 mx-auto flex items-center justify-center cursor-pointer group my-2">
+  <div className="relative w-28 h-28 sm:w-48 sm:h-48 mx-auto flex items-center justify-center cursor-pointer group my-2">
     {/* Subtle pink background glow */}
     <div className="absolute inset-0 bg-pink-500/20 rounded-full blur-2xl group-hover:bg-pink-500/30 transition-all duration-300" />
 
@@ -758,44 +758,44 @@ export default function App() {
 
   return (
 
-    <div className="min-h-screen bg-gradient-to-b from-[#1a0826] via-[#12041d] to-[#0a0212] text-slate-100 font-sans-body flex flex-col justify-between p-4 sm:p-8 relative overflow-x-hidden selection:bg-amber-400 selection:text-slate-900">
+    <div className="min-h-[100dvh] bg-gradient-to-b from-[#1a0826] via-[#12041d] to-[#0a0212] text-slate-100 font-sans-body flex flex-col justify-between px-4 sm:px-8 pt-[max(1rem,env(safe-area-inset-top))] pb-[max(1.5rem,env(safe-area-inset-bottom))] sm:pt-8 sm:pb-8 relative overflow-x-hidden selection:bg-amber-400 selection:text-slate-900">
       {/* ADD THIS SINGLE LINE: */}
       <FallingHearts />
       <ConfettiBurstCanvas burstRef={burstRef} /> {/* Add Canvas here */}
       <canvas ref={canvasRef} className="fixed inset-0 pointer-events-none z-50" />
       <div className="fixed inset-0 pointer-events-none opacity-20 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:28px_28px]" />
 
-      <main className="max-w-5xl w-full mx-auto my-auto flex-1 flex flex-col justify-center items-center relative z-10 py-8">
+      <main className="max-w-5xl w-full mx-auto my-auto flex-1 flex flex-col justify-center items-center relative z-10 py-4 sm:py-8">
 
         {/* PAGE 1: PASSCODE GATE */}
         {currentPage === 1 && (
-          <div className="w-full max-w-2xl text-center space-y-8 backdrop-blur-md bg-white/5 p-10 sm:p-12 rounded-3xl border border-white/10 shadow-2xl mx-auto">
+          <div className="w-full max-w-2xl text-center space-y-5 sm:space-y-8 backdrop-blur-md bg-white/5 p-5 sm:p-12 rounded-3xl border border-white/10 shadow-2xl mx-auto">
             <BearPumpingHeart />
-            <div className="space-y-3">
-              <h1 className="text-4xl sm:text-5xl font-serif-header text-amber-300 font-bold tracking-wide">
+            <div className="space-y-2 sm:space-y-3">
+              <h1 className="text-2xl sm:text-4xl md:text-5xl font-serif-header text-amber-300 font-bold tracking-wide [text-wrap:balance]">
                 Something is waiting for you...
               </h1>
-              <p className="text-slate-300 text-base sm:text-lg">
+              <p className="text-slate-300 text-sm sm:text-lg">
                 A Journey built for your 20th birthday.
               </p>
             </div>
-            <form onSubmit={handlePasscodeSubmit} className="space-y-5 max-w-md mx-auto">
+            <form onSubmit={handlePasscodeSubmit} className="space-y-4 sm:space-y-5 max-w-md mx-auto">
               <div>
                 <input
                   type="password"
                   placeholder="Enter Passcode (e.g. NINI or 20)"
                   value={passcode}
                   onChange={(e) => setPasscode(e.target.value)}
-                  className={`w-full px-5 py-4 rounded-2xl bg-slate-900/90 border text-center text-xl font-semibold tracking-widest text-amber-300 focus:outline-none focus:ring-2 transition-all ${passError ? 'border-rose-500 focus:ring-rose-500 animate-bounce' : 'border-amber-400/40 focus:ring-amber-400'
+                  className={`w-full min-h-[48px] px-4 sm:px-5 py-3 sm:py-4 rounded-2xl bg-slate-900/90 border text-center text-base sm:text-xl font-semibold tracking-wide sm:tracking-widest text-amber-300 focus:outline-none focus:ring-2 transition-all ${passError ? 'border-rose-500 focus:ring-rose-500 animate-bounce' : 'border-amber-400/40 focus:ring-amber-400'
                     }`}
                 />
                 {passError && <p className="text-rose-400 text-sm mt-2 font-medium">Incorrect code! Try NINI or 20.</p>}
               </div>
-              <button type="submit" className="w-full py-4 rounded-2xl bg-gradient-to-r from-amber-400 to-amber-600 text-slate-950 font-bold text-lg shadow-xl hover:brightness-110 active:scale-95 transition-all">
+              <button type="submit" className="w-full min-h-[52px] touch-manipulation py-3 sm:py-4 rounded-2xl bg-gradient-to-r from-amber-400 to-amber-600 text-slate-950 font-bold text-base sm:text-lg shadow-xl hover:brightness-110 active:scale-95 transition-all">
                 Open It Up✨
               </button>
             </form>
-            <button onClick={() => setCurrentPage(2)} className="text-sm text-amber-300/70 hover:text-amber-300 underline underline-offset-4 transition-colors">
+            <button onClick={() => setCurrentPage(2)} className="min-h-[44px] touch-manipulation text-sm text-amber-300/70 hover:text-amber-300 underline underline-offset-4 transition-colors">
               Quick Demo Pass 🔓
             </button>
           </div>
@@ -803,32 +803,32 @@ export default function App() {
 
         {/* PAGE 2: ANIMATED LOADING */}
         {currentPage === 2 && (
-          <div className="w-full max-w-2xl text-center space-y-10 backdrop-blur-md bg-white/5 p-10 sm:p-12 rounded-3xl border border-white/10 shadow-2xl mx-auto">
+          <div className="w-full max-w-2xl text-center space-y-5 sm:space-y-10 backdrop-blur-md bg-white/5 p-5 sm:p-12 rounded-3xl border border-white/10 shadow-2xl mx-auto">
             <BearSparkle />
-            <div className="space-y-4">
-              <h2 className="text-5xl sm:text-6xl font-script text-amber-300 drop-shadow">Just a little longer</h2>
-              <p className="text-slate-200 text-lg font-medium">Lining up all twenty candles</p>
+            <div className="space-y-3 sm:space-y-4">
+              <h2 className="text-3xl sm:text-5xl md:text-6xl font-script text-amber-300 drop-shadow [text-wrap:balance]">Just a little longer</h2>
+              <p className="text-slate-200 text-sm sm:text-lg font-medium">Lining up all twenty candles</p>
             </div>
             <div className="w-full bg-slate-900/90 h-4 rounded-full overflow-hidden p-0.5 border border-white/10 max-w-lg mx-auto">
               <div className="h-full bg-gradient-to-r from-pink-500 via-rose-400 to-amber-400 rounded-full transition-all duration-150 ease-out shadow-[0_0_15px_rgba(244,63,94,0.9)]" style={{ width: `${loadingProgress}%` }} />
             </div>
-            <p className="text-sm text-amber-200/90 italic font-light">I was thinking of you while making every page of this</p>
+            <p className="text-xs sm:text-sm text-amber-200/90 italic font-light">I was thinking of you while making every page of this</p>
           </div>
         )}
 
         {/* PAGE 3: HAPPY BIRTHDAY INTRO */}
         {currentPage === 3 && (
-          <div className="w-full max-w-2xl text-center space-y-8 backdrop-blur-md bg-white/5 p-10 sm:p-12 rounded-3xl border border-white/10 shadow-2xl mx-auto">
+          <div className="w-full max-w-2xl text-center space-y-4 sm:space-y-8 backdrop-blur-md bg-white/5 p-5 sm:p-12 rounded-3xl border border-white/10 shadow-2xl mx-auto">
             <BearPresentBox />
-            <div className="space-y-2">
-              <div className="text-7xl sm:text-8xl font-extrabold bg-gradient-to-r from-rose-500 via-pink-400 to-amber-400 bg-clip-text text-transparent drop-shadow">20</div>
-              <h1 className="text-6xl sm:text-7xl font-script text-amber-300">Happy Birthday</h1>
-              <h2 className="text-4xl font-serif-header text-amber-400 font-bold tracking-wide">Nini</h2>
+            <div className="space-y-1 sm:space-y-2">
+              <div className="text-6xl sm:text-7xl md:text-8xl font-extrabold bg-gradient-to-r from-rose-500 via-pink-400 to-amber-400 bg-clip-text text-transparent drop-shadow">20</div>
+              <h1 className="text-4xl sm:text-6xl md:text-7xl font-script text-amber-300">Happy Birthday</h1>
+              <h2 className="text-2xl sm:text-4xl font-serif-header text-amber-400 font-bold tracking-wide">Nini</h2>
             </div>
-            <p className="text-slate-200 text-base sm:text-lg leading-relaxed max-w-lg mx-auto">
+            <p className="text-slate-200 text-sm sm:text-lg leading-relaxed max-w-lg mx-auto">
               Today's the day we get to celebrate you. I made this little page just for you, so take your time, go through it slowly, and let the surprise unfold.
             </p>
-            <button onClick={() => setCurrentPage(4)} className="px-10 py-4 rounded-2xl bg-gradient-to-r from-amber-400 to-amber-600 text-slate-950 font-bold text-lg shadow-xl hover:scale-105 active:scale-95 transition-all">
+            <button onClick={() => setCurrentPage(4)} className="min-h-[52px] touch-manipulation px-8 sm:px-10 py-3 sm:py-4 rounded-2xl bg-gradient-to-r from-amber-400 to-amber-600 text-slate-950 font-bold text-base sm:text-lg shadow-xl hover:scale-105 active:scale-95 transition-all">
               Let's Begin →
             </button>
           </div>
@@ -836,32 +836,32 @@ export default function App() {
 
         {/* PAGE 4: GEORGIAN LETTER */}
         {currentPage === 4 && (
-          <div className="w-full max-w-2xl text-center space-y-8 mx-auto">
+          <div className="w-full max-w-2xl text-center space-y-4 sm:space-y-8 mx-auto">
             <BearHugging />
-            <div className="space-y-2">
+            <div className="space-y-1 sm:space-y-2">
               <p className="text-xs uppercase tracking-widest text-amber-400 font-bold">PAGE TWO</p>
-              <h2 className="text-4xl font-serif-header text-amber-300 font-bold">A Letter For You</h2>
-              <p className="text-sm text-slate-300">Tap the wax seal to open</p>
+              <h2 className="text-2xl sm:text-4xl font-serif-header text-amber-300 font-bold">A Letter For You</h2>
+              <p className="text-xs sm:text-sm text-slate-300">Tap the wax seal to open</p>
             </div>
             <div className="relative max-w-xl mx-auto">
               {!letterOpen ? (
-                <div onClick={() => setLetterOpen(true)} className="cursor-pointer bg-gradient-to-br from-pink-500 via-rose-500 to-amber-500 p-10 sm:p-12 rounded-3xl shadow-2xl flex flex-col items-center justify-center space-y-5 hover:scale-[1.02] active:scale-98 transition-all border border-amber-300/30">
-                  <div className="w-20 h-20 rounded-full bg-amber-400 border-4 border-amber-200 flex items-center justify-center shadow-lg animate-pulse">
-                    <span className="text-3xl">❤️</span>
+                <div onClick={() => setLetterOpen(true)} className="cursor-pointer touch-manipulation bg-gradient-to-br from-pink-500 via-rose-500 to-amber-500 p-6 sm:p-12 rounded-3xl shadow-2xl flex flex-col items-center justify-center space-y-4 sm:space-y-5 hover:scale-[1.02] active:scale-98 transition-all border border-amber-300/30">
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-amber-400 border-4 border-amber-200 flex items-center justify-center shadow-lg animate-pulse">
+                    <span className="text-2xl sm:text-3xl">❤️</span>
                   </div>
-                  <p className="text-slate-950 font-bold text-base sm:text-lg tracking-wide">Unseal Saba's Letter</p>
+                  <p className="text-slate-950 font-bold text-sm sm:text-lg tracking-wide">Unseal Saba's Letter</p>
                 </div>
               ) : (
-                <div className="bg-[#FAF5EF] text-slate-900 p-8 sm:p-10 rounded-3xl shadow-2xl border-2 border-amber-300 text-left space-y-5 animate-fadeIn">
-                  <div className="flex justify-between items-center border-b border-amber-900/10 pb-4">
+                <div className="bg-[#FAF5EF] text-slate-900 p-5 sm:p-10 rounded-3xl shadow-2xl border-2 border-amber-300 text-left space-y-4 sm:space-y-5 animate-fadeIn">
+                  <div className="flex justify-between items-center border-b border-amber-900/10 pb-3 sm:pb-4">
                     <span className="text-xs sm:text-sm font-bold text-amber-800 uppercase tracking-wider">Happy 20th Birthday</span>
                     <span className="text-xs sm:text-sm text-amber-800/70 font-serif">Oct 28</span>
                   </div>
-                  <div className="whitespace-pre-line text-base sm:text-lg leading-relaxed font-sans-body text-slate-800 font-medium">
+                  <div className="whitespace-pre-line text-sm sm:text-lg leading-relaxed font-sans-body text-slate-800 font-medium">
                     {SABA_GEORGIAN_LETTER}
                   </div>
                   <div className="pt-4 border-t border-amber-900/10 text-right">
-                    <button onClick={() => setCurrentPage(5)} className="px-8 py-3 rounded-2xl bg-amber-500 text-slate-950 font-bold text-base shadow hover:bg-amber-400 transition-colors">
+                    <button onClick={() => setCurrentPage(5)} className="w-full sm:w-auto min-h-[48px] touch-manipulation px-6 sm:px-8 py-3 rounded-2xl bg-amber-500 text-slate-950 font-bold text-sm sm:text-base shadow hover:bg-amber-400 transition-colors">
                       Continue to 20 Reasons →
                     </button>
                   </div>
@@ -880,7 +880,7 @@ export default function App() {
               <p className="text-pink-400 font-semibold tracking-widest text-xs uppercase">
                 PAGE FIVE
               </p>
-              <h2 className="text-2xl sm:text-4xl font-serif-header text-amber-300 font-bold drop-shadow-md">
+              <h2 className="text-2xl sm:text-4xl font-serif-header text-amber-300 font-bold drop-shadow-md [text-wrap:balance]">
                 20 Reasons Why You Are Special
               </h2>
               <p className="text-slate-300 text-xs sm:text-sm">
@@ -888,14 +888,14 @@ export default function App() {
               </p>
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-5 gap-4 max-h-[60vh] overflow-y-auto p-2">
+            <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 sm:gap-4 max-h-[60dvh] sm:max-h-[60vh] overflow-y-auto p-2">
               {REASONS_20.map((reason, idx) => {
                 const isOpened = !!unlockedReasons[idx];
                 return (
                   <div
                     key={idx}
                     onClick={() => flipReason(idx)}
-                    className="relative h-36 sm:h-40 [perspective:1000px] cursor-pointer select-none"
+                    className="relative h-36 sm:h-40 [perspective:1000px] cursor-pointer select-none touch-manipulation"
                   >
                     <div className="absolute inset-0 bg-white text-slate-900 rounded-2xl p-3 sm:p-4 flex items-center justify-center text-center text-xs sm:text-sm font-semibold leading-relaxed shadow-xl border border-slate-200 overflow-hidden z-0">
                       {reason}
@@ -918,7 +918,7 @@ export default function App() {
             <button
               disabled={unlockedCount < 20}
               onClick={() => setCurrentPage(6)}
-              className={`w-full max-w-md py-4 rounded-2xl font-bold text-lg transition-all mx-auto ${unlockedCount === 20
+              className={`w-full max-w-md min-h-[52px] touch-manipulation py-3 sm:py-4 rounded-2xl font-bold text-base sm:text-lg transition-all mx-auto ${unlockedCount === 20
                 ? 'bg-gradient-to-r from-amber-400 to-amber-600 text-slate-950 shadow-xl hover:scale-105 active:scale-95'
                 : 'bg-slate-800 text-slate-500 cursor-not-allowed border border-white/5'
                 }`}
@@ -929,21 +929,21 @@ export default function App() {
         )}
         {/* PAGE 6: HIGH-DETAIL BEAUTIFUL 3D CAKE & INTERACTIVE CANDLES */}
         {currentPage === 6 && (
-          <div className="w-full max-w-3xl text-center space-y-6 mx-auto px-2">
+          <div className="w-full max-w-3xl text-center space-y-4 sm:space-y-6 mx-auto px-2">
             <div className="space-y-2">
-              <h2 className="text-4xl font-serif-header text-amber-300 font-bold">
+              <h2 className="text-2xl sm:text-4xl font-serif-header text-amber-300 font-bold">
                 Make a Wish & Blow
               </h2>
-              <p className="text-base text-slate-200">
+              <p className="text-sm sm:text-base text-slate-200">
                 Tap candles to blow them out, or hit the blow button!
               </p>
-              <div className="inline-block px-4 py-1.5 rounded-full bg-amber-400/10 border border-amber-400/30 text-amber-300 font-semibold text-sm">
+              <div className="inline-block px-3 sm:px-4 py-1.5 rounded-full bg-amber-400/10 border border-amber-400/30 text-amber-300 font-semibold text-xs sm:text-sm">
                 {litCount > 0 ? `🔥 ${litCount} / 20 Flames Glowing` : '✨ All Wish Candles Extinguished!'}
               </div>
             </div>
 
             {/* Glowing Cake Presentation Container */}
-            <div className={`relative max-w-lg mx-auto bg-slate-900/80 border border-white/10 rounded-3xl p-6 sm:p-8 shadow-2xl transition-all duration-500 ${litCount > 0 ? 'animate-cake-glow' : ''}`}>
+            <div className={`relative max-w-lg mx-auto bg-slate-900/80 border border-white/10 rounded-3xl p-3 sm:p-8 shadow-2xl transition-all duration-500 ${litCount > 0 ? 'animate-cake-glow' : ''}`}>
 
               {/* Top Layer 20 Candles Arc */}
               <div className="relative z-20 mb-2 flex flex-wrap justify-center gap-1.5 sm:gap-2 px-2 max-w-md mx-auto">
@@ -951,7 +951,7 @@ export default function App() {
                   <div key={idx} className="relative flex flex-col items-center">
 
                     {/* Flame & Smoke Container */}
-                    <div className="h-9 flex items-center justify-center relative cursor-pointer" onClick={() => toggleCandle(idx)}>
+                    <div className="h-9 min-w-[20px] sm:min-w-0 flex items-center justify-center relative cursor-pointer touch-manipulation" onClick={() => toggleCandle(idx)}>
                       {/* Rising Smoke Puff on Extinguish */}
                       {activeSmoke[idx] && (
                         <div className="absolute -top-3 text-lg animate-smoke pointer-events-none select-none">
@@ -979,7 +979,7 @@ export default function App() {
                     {/* Colored Striped Candle Body */}
                     <button
                       onClick={() => toggleCandle(idx)}
-                      className="w-2.5 sm:w-3 h-10 sm:h-12 rounded-t-md transition-all hover:scale-110 shadow-md border border-black/20 overflow-hidden relative"
+                      className="w-2.5 sm:w-3 h-10 sm:h-12 rounded-t-md transition-all hover:scale-110 shadow-md border border-black/20 overflow-hidden relative touch-manipulation"
                       style={{
                         background: idx % 2 === 0
                           ? 'linear-gradient(135deg, #EC4899 0%, #F43F5E 50%, #E11D48 100%)'
@@ -1031,10 +1031,10 @@ export default function App() {
               </div>
 
               {/* Interactive Control Buttons */}
-              <div className="flex flex-col sm:flex-row gap-3 justify-center pt-5">
+              <div className="flex flex-col sm:flex-row gap-3 justify-center pt-4 sm:pt-5">
                 <button
                   onClick={blowAllCandles}
-                  className="px-8 py-3.5 rounded-2xl bg-gradient-to-r from-amber-400 to-amber-500 text-slate-950 font-bold text-base shadow-lg hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-2"
+                  className="w-full sm:w-auto min-h-[52px] touch-manipulation px-6 sm:px-8 py-3 sm:py-3.5 rounded-2xl bg-gradient-to-r from-amber-400 to-amber-500 text-slate-950 font-bold text-sm sm:text-base shadow-lg hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-2"
                 >
                   <span>Blow Out All Candles</span>
                   <span className="text-lg">💨</span>
@@ -1042,7 +1042,7 @@ export default function App() {
 
                 <button
                   onClick={relightCandles}
-                  className="px-6 py-3.5 rounded-2xl bg-slate-800 text-amber-300 border border-amber-400/30 font-bold text-base shadow hover:bg-slate-700 transition-all flex items-center justify-center gap-2"
+                  className="w-full sm:w-auto min-h-[52px] touch-manipulation px-6 py-3 sm:py-3.5 rounded-2xl bg-slate-800 text-amber-300 border border-amber-400/30 font-bold text-sm sm:text-base shadow hover:bg-slate-700 transition-all flex items-center justify-center gap-2"
                 >
                   <span>Relight Candles</span>
                   <span className="text-lg">✨</span>
@@ -1053,13 +1053,13 @@ export default function App() {
             {/* Wish Recorded Modal */}
             {showWishModal && (
               <div className="fixed inset-0 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4 z-50">
-                <div className="bg-slate-900 border border-amber-400/40 p-8 rounded-3xl max-w-sm text-center space-y-5 shadow-2xl">
-                  <span className="text-5xl">✨</span>
-                  <h3 className="text-2xl font-bold text-amber-300">Your Wish is Recorded!</h3>
-                  <p className="text-sm text-slate-300 leading-relaxed">
+                <div className="bg-slate-900 border border-amber-400/40 p-5 sm:p-8 rounded-3xl w-[90vw] max-w-sm max-h-[90dvh] overflow-y-auto text-center space-y-4 sm:space-y-5 shadow-2xl">
+                  <span className="text-4xl sm:text-5xl">✨</span>
+                  <h3 className="text-xl sm:text-2xl font-bold text-amber-300">Your Wish is Recorded!</h3>
+                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
                     Recorded in the stars forever. Now let's test how well you know yourself!
                   </p>
-                  <button onClick={() => { setShowWishModal(false); setCurrentPage(7); }} className="w-full py-3.5 rounded-2xl bg-amber-400 text-slate-950 font-bold text-base hover:brightness-110">
+                  <button onClick={() => { setShowWishModal(false); setCurrentPage(7); }} className="w-full min-h-[52px] touch-manipulation py-3 sm:py-3.5 rounded-2xl bg-amber-400 text-slate-950 font-bold text-base hover:brightness-110">
                     Start Quiz →
                   </button>
                 </div>
@@ -1070,40 +1070,40 @@ export default function App() {
 
         {/* PAGE 7: QUIZ & REASONS */}
         {currentPage === 7 && (
-          <div className="w-full max-w-2xl text-center space-y-8 mx-auto px-4 animate-fade-in">
+          <div className="w-full max-w-2xl text-center space-y-4 sm:space-y-8 mx-auto px-0 sm:px-4 animate-fade-in">
             {/* Header & Bear Section */}
-            <div className="w-full text-center space-y-6 backdrop-blur-md bg-white/5 p-8 rounded-3xl border border-white/10 shadow-2xl">
+            <div className="w-full text-center space-y-3 sm:space-y-6 backdrop-blur-md bg-white/5 p-4 sm:p-8 rounded-3xl border border-white/10 shadow-2xl">
               <BearLove />
-              <h2 className="text-3xl font-serif text-amber-300 font-bold">
+              <h2 className="text-2xl sm:text-3xl font-serif text-amber-300 font-bold [text-wrap:balance]">
                 A Few Reasons You're Amazing
               </h2>
-              <div className="space-y-2 pt-2">
-                <p className="text-slate-200 text-base sm:text-xl font-medium">
+              <div className="space-y-1 sm:space-y-2 pt-1 sm:pt-2">
+                <p className="text-slate-200 text-sm sm:text-xl font-medium">
                   20 Reasons why you're special
                 </p>
-                <p className="text-amber-300 font-bold text-xl sm:text-2xl">
+                <p className="text-amber-300 font-bold text-lg sm:text-2xl">
                   {unlockedCount} of 20 opened
                 </p>
               </div>
             </div>
 
             {/* Quiz Question Box */}
-            <div className="w-full space-y-6 backdrop-blur-md bg-white/5 p-8 rounded-3xl border border-white/10 shadow-2xl">
+            <div className="w-full space-y-4 sm:space-y-6 backdrop-blur-md bg-white/5 p-4 sm:p-8 rounded-3xl border border-white/10 shadow-2xl">
               <div className="space-y-2">
                 <p className="text-xs uppercase tracking-widest text-amber-400 font-bold">
                   QUESTION {currentQuestion + 1} OF {QUIZ_QUESTIONS.length}
                 </p>
-                <h2 className="text-2xl sm:text-3xl font-serif text-amber-300 font-bold">
+                <h2 className="text-lg sm:text-2xl md:text-3xl font-serif text-amber-300 font-bold [text-wrap:balance]">
                   {QUIZ_QUESTIONS[currentQuestion].question}
                 </h2>
               </div>
 
-              <div className="space-y-4 max-w-lg mx-auto">
+              <div className="space-y-3 sm:space-y-4 max-w-lg mx-auto">
                 {QUIZ_QUESTIONS[currentQuestion].options.map((opt, idx) => (
                   <button
                     key={idx}
                     onClick={() => setQuizFeedback(QUIZ_QUESTIONS[currentQuestion].feedback)}
-                    className="w-full p-5 rounded-2xl bg-slate-900/90 border border-white/10 hover:border-amber-400/60 text-left text-base text-slate-200 hover:text-amber-300 font-medium transition-all hover:scale-[1.01] active:scale-98 shadow-md"
+                    className="w-full min-h-[52px] touch-manipulation p-4 sm:p-5 rounded-2xl bg-slate-900/90 border border-white/10 hover:border-amber-400/60 text-left text-sm sm:text-base text-slate-200 hover:text-amber-300 font-medium transition-all hover:scale-[1.01] active:scale-98 shadow-md"
                   >
                     {opt}
                   </button>
@@ -1114,9 +1114,9 @@ export default function App() {
             {/* Quiz Answer Feedback Modal */}
             {quizFeedback && (
               <div className="fixed inset-0 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4 z-50">
-                <div className="bg-slate-900 border border-amber-400/40 p-8 rounded-3xl max-w-sm text-center space-y-5 shadow-2xl">
-                  <span className="text-4xl">👑</span>
-                  <p className="text-base text-slate-200 font-medium leading-relaxed">{quizFeedback}</p>
+                <div className="bg-slate-900 border border-amber-400/40 p-5 sm:p-8 rounded-3xl w-[90vw] max-w-sm max-h-[90dvh] overflow-y-auto text-center space-y-4 sm:space-y-5 shadow-2xl">
+                  <span className="text-3xl sm:text-4xl">👑</span>
+                  <p className="text-sm sm:text-base text-slate-200 font-medium leading-relaxed">{quizFeedback}</p>
                   <button
                     onClick={() => {
                       setQuizFeedback(null);
@@ -1126,7 +1126,7 @@ export default function App() {
                         setCurrentPage(7.5); // Directs to Arcade Games Page
                       }
                     }}
-                    className="w-full py-3.5 rounded-2xl bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 text-slate-950 font-bold text-base hover:scale-105 active:scale-95 transition-all shadow-lg cursor-pointer"
+                    className="w-full min-h-[52px] touch-manipulation py-3 sm:py-3.5 rounded-2xl bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 text-slate-950 font-bold text-sm sm:text-base hover:scale-105 active:scale-95 transition-all shadow-lg cursor-pointer"
                   >
                     {currentQuestion + 1 < QUIZ_QUESTIONS.length ? 'Next Question →' : 'Enter Game Arcade 🎮 →'}
                   </button>
@@ -1143,39 +1143,39 @@ export default function App() {
 
         {/* PAGE 8: GRAND PRIZE WATCH SCRATCH CARD */}
         {currentPage === 8 && (
-          <div className="w-full max-w-2xl text-center space-y-8 mx-auto px-4 animate-fade-in">
+          <div className="w-full max-w-2xl text-center space-y-4 sm:space-y-8 mx-auto px-0 sm:px-4 animate-fade-in">
             {/* Page Header */}
-            <div className="space-y-3">
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-semibold tracking-widest uppercase backdrop-blur-md animate-pulse">
+            <div className="space-y-2 sm:space-y-3">
+              <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-semibold tracking-widest uppercase backdrop-blur-md animate-pulse">
                 ✨ Exclusive Reveal
               </div>
-              <h2 className="text-4xl sm:text-5xl font-serif text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-amber-200 font-bold tracking-tight">
+              <h2 className="text-2xl sm:text-4xl md:text-5xl font-serif text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-amber-200 font-bold tracking-tight [text-wrap:balance]">
                 The Grand Prize Reveal
               </h2>
-              <p className="text-sm sm:text-base text-slate-300 font-light">
+              <p className="text-xs sm:text-base text-slate-300 font-light">
                 Scratch the golden card below to unveil your birthday present!
               </p>
             </div>
 
             {/* Scratch Ticket Container */}
-            <div className="relative max-w-md mx-auto rounded-3xl overflow-hidden border-2 border-amber-400/50 shadow-[0_0_50px_rgba(245,158,11,0.2)] bg-gradient-to-b from-slate-900 via-slate-950 to-slate-900 p-8 space-y-6 transition-all duration-500 hover:border-amber-400/80">
+            <div className="relative max-w-md mx-auto rounded-3xl overflow-hidden border-2 border-amber-400/50 shadow-[0_0_50px_rgba(245,158,11,0.2)] bg-gradient-to-b from-slate-900 via-slate-950 to-slate-900 p-4 sm:p-8 space-y-4 sm:space-y-6 transition-all duration-500 hover:border-amber-400/80">
               <div className="absolute -top-20 -left-20 w-40 h-40 bg-amber-500/20 rounded-full blur-3xl pointer-events-none" />
               <div className="absolute -bottom-20 -right-20 w-40 h-40 bg-amber-400/10 rounded-full blur-3xl pointer-events-none" />
 
               {/* Hidden Present Content */}
-              <div className={`space-y-5 transition-all duration-700 ease-out ${isScratched ? 'scale-100 opacity-100' : 'scale-95 opacity-90'}`}>
-                <div className="relative w-32 h-32 mx-auto">
+              <div className={`space-y-4 sm:space-y-5 transition-all duration-700 ease-out ${isScratched ? 'scale-100 opacity-100' : 'scale-95 opacity-90'}`}>
+                <div className="relative w-24 h-24 sm:w-32 sm:h-32 mx-auto">
                   <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-amber-400 via-yellow-200 to-amber-600 animate-spin-slow opacity-75 blur-sm" />
-                  <div className="relative w-full h-full rounded-2xl bg-gradient-to-tr from-amber-500 via-amber-400 to-amber-600 flex items-center justify-center text-6xl shadow-[0_10px_25px_rgba(245,158,11,0.4)] border border-amber-200/40 transform transition-transform hover:rotate-6">
+                  <div className="relative w-full h-full rounded-2xl bg-gradient-to-tr from-amber-500 via-amber-400 to-amber-600 flex items-center justify-center text-5xl sm:text-6xl shadow-[0_10px_25px_rgba(245,158,11,0.4)] border border-amber-200/40 transform transition-transform hover:rotate-6">
                     ⌚
                   </div>
                 </div>
 
                 <div className="space-y-2">
-                  <h3 className="text-2xl sm:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-300 to-amber-400">
+                  <h3 className="text-lg sm:text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-300 to-amber-400 [text-wrap:balance]">
                     Your Birthday Gift: An Elegant Watch
                   </h3>
-                  <p className="text-sm text-slate-300 leading-relaxed font-light px-2">
+                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-light px-1 sm:px-2">
                     To the girl who turns every simple moment into a masterpiece—may every single second with this timepiece remind you of how deeply precious, appreciated, and cherished you are.
                   </p>
                 </div>
@@ -1186,7 +1186,14 @@ export default function App() {
                 <div className="absolute inset-0 w-full h-full z-10">
                   <canvas
                     ref={scratchCanvasRef}
-                    className="w-full h-full cursor-pointer touch-none rounded-3xl"
+                    className="w-full h-full cursor-pointer touch-none select-none rounded-3xl"
+                    style={{
+                      touchAction: 'none',
+                      WebkitUserSelect: 'none',
+                      userSelect: 'none',
+                      WebkitTouchCallout: 'none',
+                    }}
+                    onContextMenu={(e) => e.preventDefault()}
                   />
                 </div>
               )}
@@ -1194,10 +1201,10 @@ export default function App() {
 
             {/* Final Chapter Button */}
             {isScratched && (
-              <div className="pt-4 animate-bounce-short">
+              <div className="pt-2 sm:pt-4 animate-bounce-short">
                 <button
                   onClick={() => setCurrentPage(9)}
-                  className="group relative inline-flex items-center gap-3 px-10 py-4 rounded-2xl bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 text-slate-950 font-bold text-lg shadow-[0_0_30px_rgba(245,158,11,0.4)] hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer"
+                  className="group relative inline-flex items-center justify-center gap-3 min-h-[52px] touch-manipulation px-8 sm:px-10 py-3 sm:py-4 rounded-2xl bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 text-slate-950 font-bold text-base sm:text-lg shadow-[0_0_30px_rgba(245,158,11,0.4)] hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer"
                 >
                   <span>Final Chapter</span>
                   <span className="transform group-hover:translate-x-1 transition-transform">→</span>
@@ -1209,10 +1216,10 @@ export default function App() {
 
         {/* PAGE 9: THANK YOU */}
         {currentPage === 9 && (
-          <div className="w-full max-w-2xl text-center space-y-6 backdrop-blur-md bg-white/5 p-8 sm:p-10 rounded-3xl border border-white/10 shadow-2xl mx-auto">
+          <div className="w-full max-w-2xl text-center space-y-4 sm:space-y-6 backdrop-blur-md bg-white/5 p-5 sm:p-10 rounded-3xl border border-white/10 shadow-2xl mx-auto">
 
             {/* Replaced <BearHugging /> with your downloaded GIF */}
-            <div className="relative w-44 h-44 sm:w-52 sm:h-52 mx-auto flex items-center justify-center cursor-pointer group">
+            <div className="relative w-32 h-32 sm:w-52 sm:h-52 mx-auto flex items-center justify-center cursor-pointer group">
               <div className="absolute inset-0 bg-rose-500/20 rounded-full blur-2xl group-hover:bg-rose-500/30 transition-all duration-300" />
               <img
                 src="/image/Happy Love You Sticker by milkmochabear.gif"
@@ -1221,19 +1228,19 @@ export default function App() {
               />
             </div>
 
-            <div className="space-y-3">
-              <h1 className="text-4xl sm:text-5xl font-serif-header text-amber-300 font-bold">
+            <div className="space-y-2 sm:space-y-3">
+              <h1 className="text-2xl sm:text-4xl md:text-5xl font-serif-header text-amber-300 font-bold [text-wrap:balance]">
                 Thank You For Being You, Ninuca
               </h1>
-              <p className="text-slate-300 text-base sm:text-lg leading-relaxed max-w-lg mx-auto">
+              <p className="text-slate-300 text-sm sm:text-lg leading-relaxed max-w-lg mx-auto">
                 Here's to your 20th year—full of beauty, poise, softness, and unforgettable memories.
               </p>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center pt-2">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center pt-2">
               <button
                 onClick={() => triggerFireworks()}
-                className="px-8 py-3.5 rounded-2xl bg-gradient-to-r from-rose-500 to-pink-500 text-white font-bold text-base shadow hover:scale-105 active:scale-95 transition-all"
+                className="w-full sm:w-auto min-h-[52px] touch-manipulation px-6 sm:px-8 py-3 sm:py-3.5 rounded-2xl bg-gradient-to-r from-rose-500 to-pink-500 text-white font-bold text-base shadow hover:scale-105 active:scale-95 transition-all"
               >
                 Send a Hug 💖
               </button>
@@ -1244,7 +1251,7 @@ export default function App() {
                   setCandles(Array(20).fill(true));
                   setIsScratched(false);
                 }}
-                className="px-8 py-3.5 rounded-2xl bg-slate-800 text-amber-300 font-bold text-base border border-amber-400/30 hover:bg-slate-700 transition-all"
+                className="w-full sm:w-auto min-h-[52px] touch-manipulation px-6 sm:px-8 py-3 sm:py-3.5 rounded-2xl bg-slate-800 text-amber-300 font-bold text-base border border-amber-400/30 hover:bg-slate-700 transition-all"
               >
                 Replay Our Journey 🔄
               </button>
@@ -1260,3 +1267,5 @@ export default function App() {
     </div>
   );
 }
+
+
