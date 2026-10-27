@@ -213,6 +213,19 @@ const BearHugging = () => (
     />
   </div>
 );
+const BearPlayng = () => (
+  <div className="relative w-40 h-40 sm:w-48 sm:h-48 mx-auto flex items-center justify-center cursor-pointer group my-2">
+    {/* Subtle pink background glow */}
+    <div className="absolute inset-0 bg-pink-500/20 rounded-full blur-2xl group-hover:bg-pink-500/30 transition-all duration-300" />
+
+    {/* Your downloaded GIF */}
+    <img
+      src="public/image/special.gif"
+      alt="Cute Bears Couple"
+      className="w-full h-full object-contain relative z-10 drop-shadow-xl transition-transform duration-300 group-hover:scale-105"
+    />
+  </div>
+);
 const ConfettiBurstCanvas = ({ burstRef }) => {
   const canvasRef = React.useRef(null);
   const particlesRef = React.useRef([]);
