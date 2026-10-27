@@ -1150,7 +1150,7 @@ export default function App() {
                 ✨ Exclusive Reveal
               </div>
               <h2 className="text-2xl sm:text-4xl md:text-5xl font-serif text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-amber-200 font-bold tracking-tight [text-wrap:balance]">
-                The Grand Prize Reveal
+                Prize from fate
               </h2>
               <p className="text-xs sm:text-base text-slate-300 font-light">
                 Scratch the golden card below to unveil your birthday present!
