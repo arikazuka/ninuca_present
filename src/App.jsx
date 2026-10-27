@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { SABA_GEORGIAN_LETTER, REASONS_20, QUIZ_QUESTIONS } from './data';
-
+import { GamesPage } from './GamesPage';
 // --- Web Audio API Sound Effects ---
 const playPopSound = () => {
   try {
@@ -1068,52 +1068,50 @@ export default function App() {
           </div>
         )}
 
-        {/* PAGE 7: QUIZ */}
+        {/* PAGE 7: QUIZ & REASONS */}
         {currentPage === 7 && (
-          <div className="w-full max-w-2xl text-center space-y-8 mx-auto">
-            <div className="w-full max-w-2xl text-center space-y-6 backdrop-blur-md bg-white/5 p-8 rounded-3xl border border-white/10 shadow-2xl">
+          <div className="w-full max-w-2xl text-center space-y-8 mx-auto px-4 animate-fade-in">
+            {/* Header & Bear Section */}
+            <div className="w-full text-center space-y-6 backdrop-blur-md bg-white/5 p-8 rounded-3xl border border-white/10 shadow-2xl">
               <BearLove />
-              {/* 💖 Quiz / Reasons Bear GIF */}
-              {/* <img
-                src="/public/image/special.gif" // or your /bears.gif file
-                alt="Cute Quiz Bear"
-                className="w-36 h-36 sm:w-44 sm:h-44 mx-auto object-contain drop-shadow-xl hover:scale-105 transition-transform"
-              /> */}
-
-              <h2 className="text-3xl font-serif-header text-amber-300 font-bold">
+              <h2 className="text-3xl font-serif text-amber-300 font-bold">
                 A Few Reasons You're Amazing
               </h2>
-
-              {/* ... your existing cards or quiz doors ... */}
-            </div>
-            <div className="space-y-2">
-              <p className="text-slate-200 text-base sm:text-xl font-medium">
-                20 Reasons why you're special
-              </p>
-              <p className="text-amber-300 font-bold text-xl sm:text-2xl">
-                {unlockedCount} of 20 opened
-              </p>
-            </div>
-            <div className="space-y-2">
-              <p className="text-xs uppercase tracking-widest text-amber-400 font-bold">
-                QUESTION {currentQuestion + 1} OF {QUIZ_QUESTIONS.length}
-              </p>
-              <h2 className="text-3xl font-serif-header text-amber-300 font-bold">
-                {QUIZ_QUESTIONS[currentQuestion].question}
-              </h2>
-            </div>
-            <div className="space-y-4 max-w-lg mx-auto">
-              {QUIZ_QUESTIONS[currentQuestion].options.map((opt, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => setQuizFeedback(QUIZ_QUESTIONS[currentQuestion].feedback)}
-                  className="w-full p-5 rounded-2xl bg-slate-900/90 border border-white/10 hover:border-amber-400/60 text-left text-base text-slate-200 hover:text-amber-300 font-medium transition-all hover:scale-[1.01] active:scale-98 shadow-md"
-                >
-                  {opt}
-                </button>
-              ))}
+              <div className="space-y-2 pt-2">
+                <p className="text-slate-200 text-base sm:text-xl font-medium">
+                  20 Reasons why you're special
+                </p>
+                <p className="text-amber-300 font-bold text-xl sm:text-2xl">
+                  {unlockedCount} of 20 opened
+                </p>
+              </div>
             </div>
 
+            {/* Quiz Question Box */}
+            <div className="w-full space-y-6 backdrop-blur-md bg-white/5 p-8 rounded-3xl border border-white/10 shadow-2xl">
+              <div className="space-y-2">
+                <p className="text-xs uppercase tracking-widest text-amber-400 font-bold">
+                  QUESTION {currentQuestion + 1} OF {QUIZ_QUESTIONS.length}
+                </p>
+                <h2 className="text-2xl sm:text-3xl font-serif text-amber-300 font-bold">
+                  {QUIZ_QUESTIONS[currentQuestion].question}
+                </h2>
+              </div>
+
+              <div className="space-y-4 max-w-lg mx-auto">
+                {QUIZ_QUESTIONS[currentQuestion].options.map((opt, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => setQuizFeedback(QUIZ_QUESTIONS[currentQuestion].feedback)}
+                    className="w-full p-5 rounded-2xl bg-slate-900/90 border border-white/10 hover:border-amber-400/60 text-left text-base text-slate-200 hover:text-amber-300 font-medium transition-all hover:scale-[1.01] active:scale-98 shadow-md"
+                  >
+                    {opt}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Quiz Answer Feedback Modal */}
             {quizFeedback && (
               <div className="fixed inset-0 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4 z-50">
                 <div className="bg-slate-900 border border-amber-400/40 p-8 rounded-3xl max-w-sm text-center space-y-5 shadow-2xl">
@@ -1122,15 +1120,15 @@ export default function App() {
                   <button
                     onClick={() => {
                       setQuizFeedback(null);
-                      if (currentQuestion < QUIZ_QUESTIONS.length - 1) {
+                      if (currentQuestion + 1 < QUIZ_QUESTIONS.length) {
                         setCurrentQuestion(currentQuestion + 1);
                       } else {
-                        setCurrentPage(8);
+                        setCurrentPage(7.5); // Directs to Arcade Games Page
                       }
                     }}
-                    className="w-full py-3 rounded-2xl bg-amber-400 text-slate-950 font-bold text-base"
+                    className="w-full py-3.5 rounded-2xl bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 text-slate-950 font-bold text-base hover:scale-105 active:scale-95 transition-all shadow-lg cursor-pointer"
                   >
-                    {currentQuestion < QUIZ_QUESTIONS.length - 1 ? 'Next Question →' : 'Reveal Gift →'}
+                    {currentQuestion + 1 < QUIZ_QUESTIONS.length ? 'Next Question →' : 'Enter Game Arcade 🎮 →'}
                   </button>
                 </div>
               </div>
@@ -1138,7 +1136,12 @@ export default function App() {
           </div>
         )}
 
-        {/* PAGE 8: SCRATCH CARD */}
+        {/* PAGE 7.5: MINI GAMES ARCADE */}
+        {currentPage === 7.5 && (
+          <GamesPage onComplete={() => setCurrentPage(8)} />
+        )}
+
+        {/* PAGE 8: GRAND PRIZE WATCH SCRATCH CARD */}
         {currentPage === 8 && (
           <div className="w-full max-w-2xl text-center space-y-8 mx-auto px-4 animate-fade-in">
             {/* Page Header */}
@@ -1156,15 +1159,11 @@ export default function App() {
 
             {/* Scratch Ticket Container */}
             <div className="relative max-w-md mx-auto rounded-3xl overflow-hidden border-2 border-amber-400/50 shadow-[0_0_50px_rgba(245,158,11,0.2)] bg-gradient-to-b from-slate-900 via-slate-950 to-slate-900 p-8 space-y-6 transition-all duration-500 hover:border-amber-400/80">
-
-              {/* Background Ambient Glow */}
               <div className="absolute -top-20 -left-20 w-40 h-40 bg-amber-500/20 rounded-full blur-3xl pointer-events-none" />
               <div className="absolute -bottom-20 -right-20 w-40 h-40 bg-amber-400/10 rounded-full blur-3xl pointer-events-none" />
 
-              {/* Hidden Present Content (Revealed after scratch) */}
+              {/* Hidden Present Content */}
               <div className={`space-y-5 transition-all duration-700 ease-out ${isScratched ? 'scale-100 opacity-100' : 'scale-95 opacity-90'}`}>
-
-                {/* Watch Icon Container with Shimmer Ring */}
                 <div className="relative w-32 h-32 mx-auto">
                   <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-amber-400 via-yellow-200 to-amber-600 animate-spin-slow opacity-75 blur-sm" />
                   <div className="relative w-full h-full rounded-2xl bg-gradient-to-tr from-amber-500 via-amber-400 to-amber-600 flex items-center justify-center text-6xl shadow-[0_10px_25px_rgba(245,158,11,0.4)] border border-amber-200/40 transform transition-transform hover:rotate-6">
@@ -1172,7 +1171,6 @@ export default function App() {
                   </div>
                 </div>
 
-                {/* Present Title & Message */}
                 <div className="space-y-2">
                   <h3 className="text-2xl sm:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-300 to-amber-400">
                     Your Birthday Gift: An Elegant Watch
@@ -1183,7 +1181,7 @@ export default function App() {
                 </div>
               </div>
 
-              {/* Interactive Scratch Canvas Overlay */}
+              {/* Canvas Scratch Foil Overlay */}
               {!isScratched && (
                 <div className="absolute inset-0 w-full h-full z-10">
                   <canvas
@@ -1194,12 +1192,12 @@ export default function App() {
               )}
             </div>
 
-            {/* Next Chapter Button (Appears after scratch) */}
+            {/* Final Chapter Button */}
             {isScratched && (
               <div className="pt-4 animate-bounce-short">
                 <button
                   onClick={() => setCurrentPage(9)}
-                  className="group relative inline-flex items-center gap-3 px-10 py-4 rounded-2xl bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 text-slate-950 font-bold text-lg shadow-[0_0_30px_rgba(245,158,11,0.4)] hover:scale-105 active:scale-95 transition-all duration-300"
+                  className="group relative inline-flex items-center gap-3 px-10 py-4 rounded-2xl bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 text-slate-950 font-bold text-lg shadow-[0_0_30px_rgba(245,158,11,0.4)] hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer"
                 >
                   <span>Final Chapter</span>
                   <span className="transform group-hover:translate-x-1 transition-transform">→</span>
